@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralizador</title>
+    <link rel="shortcut icon" href="https://extraneth.notredamecampinas.com.br/favicon.ico">
+    <link rel="icon" href="/img/nd.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://extraneth.notredamecampinas.com.br/favicon.ico">
+    <link href="/estilo/style2.css" rel="stylesheet">
+    <link href="/fonts/fonts.css"  rel="stylesheet">
+    <link rel="stylesheet" href="/icon/icon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" crossorigin="anonymous" />
+</head>
+
+<body>
+<!-- RECEPÇÃO -->
+  <header class="container">
+    <section class="header-container">
+<!-- NAVBAR -->
+      <div class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav class="menu">
+        <ul>
+          <li><a href="#acessounico">Acesso Unico</a></li>
+          <li><a href="#biblioteca">Biblioteca</a></li>
+          <li><a href="#portalnotre">Portal Notre</a></li>
+          <li><a href="#">Link 4</a></li>
+        </ul>
+      </nav>
+ <!-- End NAVBAR -->     
+        <div class="flexup">
+          <div class="start-header">
+            <h1 class="start">INÍCIO</h1>  
+            <img src="/img/formageo1.png" id="formageo1" alt="image of lemon">
+            <img src="/img/formageo3.png" id="formageo3" alt="image of square">      
+          </div>     
+          <div class="login-header" onclick="toggleOptions()">       
+            <img src="/img/notre-img.png" class="notre-img" alt="logo picture">
+            <img id="picture" class="picture" alt="Imagem Gmail" />
+            <ul class="options">
+              <li><a href="#googleworkspace" class="link">Voltar</a></li>
+            </ul>
+          </div>
+        </div>
+        <button id="botao" class="exibir" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+        <div>
+          <p class="welcome">BEM-VINDO(A), <span class="welspan" id="fullName"></span></p>
+        </div>
+
+    </section>
+  </header>
+
+<!-- GRADE DO CENTRALIZADOR -->
+  <main class="container">
+
+    <!-- SEÇÃO GOOGLE WORKSPACE -->
+    <section class="centralizador">
+      <div>        
+        <p class="paragraph">GOOGLE WORKSPACE</p>
+      </div>
+    <div class="products-container" class="wrap">
+      <div class="card"> 
+        <a href="https://workspace.google.com/dashboard" title="Google Workspace" target="_blank"><div class="product-image" id="img-1"></div></a>
+        <a href="https://workspace.google.com/dashboard" title="Google Workspace" target="_blank" class="btn">WORKSPACE</a>
+      </div>
+
+      <div class="card">
+        <a href="https://classroom.google.com" title="Google Classroom" target="_blank"><div class="product-image" id="img-2"></div></a>
+        <a href="https://classroom.google.com/" title="Google Classroom" target="_blank" class="btn">CLASSSROOM</a>
+      </div>
+
+      <div class="card">
+        <a href="https://drive.google.com" title="Google Drive" target="_blank"><div class="product-image" id="img-3"></div></a>
+        <a href="https://drive.google.com" title="Google Drive" target="_blank" class="btn">DRIVE</a>
+      </div>
+
+      <div class="card">
+        <a href="https://mail.google.com" title="Gmail" target="_blank"><div class="product-image" id="img-4"></div></a>
+        <a href="https://mail.google.com" title="Gmail" target="_blank" class="btn">GMAIL</a>
+      </div>
+    </div>
+    </section>
+
+    <section class="centralizador">
+      <div>        
+        <p class="paragraph" id="biblioteca">BIBLIOTECA</p>
+      </div>
+    <div class="products-container" class="wrap">
+      <div class="card"> 
+        <a href="https://workspace.google.com/dashboard" title="Blibioteca" target="_blank"><div class="product-image" id="img-5"></div></a>
+        <a href="https://workspace.google.com/dashboard" title="Bli" target="_blank" class="btn">BIBLIOTECA</a>
+      </div>
+
+      <div class="card">
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Source/Bib-Biblioteca/Public/BibConsultaAcervo.aspx?NewPesqPublic=T&CodColigada=1&CodFilial=1&CodUnidadeBib=1" title="Consulte o Acervo" target="_blank"><div class="product-image" id="img-6"></div></a>
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Source/Bib-Biblioteca/Public/BibConsultaAcervo.aspx?NewPesqPublic=T&CodColigada=1&CodFilial=1&CodUnidadeBib=1" title="Consulte o Acervo" target="_blank" class="btn">ACERVO</a>
+      </div>
+
+      <div class="card">
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Login.aspx?autoload=false&ReturnUrl=%2fCorpore.Net%2fMain.aspx%3fActionID%3dBibEmprestimosPendentesActionWeb%26SelectedMenuIDKey%3dItemEmprestimosRenovacao" title="Renovar o Empréstimo" target="_blank"><div class="product-image" id="img-7"></div></a>
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Login.aspx?autoload=false&ReturnUrl=%2fCorpore.Net%2fMain.aspx%3fActionID%3dBibEmprestimosPendentesActionWeb%26SelectedMenuIDKey%3dItemEmprestimosRenovacao" title="Renovar o Empréstimo" target="_blank" class="btn">EMPRÉSTIMO</a>
+      </div>
+
+      <div class="card">
+        <a href="https://sites.google.com/notredamecampinas.net.br/bibliotecavirtualcnd?pli=1" title="Blibioteca Virtual" target="_blank"><div class="product-image" id="img-8"></div></a>
+        <a href="https://sites.google.com/notredamecampinas.net.br/bibliotecavirtualcnd?pli=1" title="Blibioteca Virtual" target="_blank" class="btn">VIRTUAL</a>
+      </div>
+    </div>
+    </section>
+
+    <section class="centralizador">
+      <div>        
+        <p class="paragraph" id="portalnotre">PORTAL NOTRE</p>
+      </div>
+    <div class="products-container" class="wrap">
+      <div class="card"> 
+        <a href="https://workspace.google.com/dashboard" title="Blibioteca" target="_blank"><div class="product-image" id="img-5"></div></a>
+        <a href="https://workspace.google.com/dashboard" title="Bli" target="_blank" class="btn">Acessar Portal</a>
+      </div>
+
+      <div class="card">
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Source/Bib-Biblioteca/Public/BibConsultaAcervo.aspx?NewPesqPublic=T&CodColigada=1&CodFilial=1&CodUnidadeBib=1" title="Consulte o Acervo" target="_blank"><div class="product-image" id="img-6"></div></a>
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Source/Bib-Biblioteca/Public/BibConsultaAcervo.aspx?NewPesqPublic=T&CodColigada=1&CodFilial=1&CodUnidadeBib=1" title="Consulte o Acervo" target="_blank" class="btn"> App IOS</a>
+      </div>
+
+      <div class="card">
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Login.aspx?autoload=false&ReturnUrl=%2fCorpore.Net%2fMain.aspx%3fActionID%3dBibEmprestimosPendentesActionWeb%26SelectedMenuIDKey%3dItemEmprestimosRenovacao" title="Renovar o Empréstimo" target="_blank"><div class="product-image" id="img-7"></div></a>
+        <a href="https://portais.notredamecampinas.com.br/Corpore.Net/Login.aspx?autoload=false&ReturnUrl=%2fCorpore.Net%2fMain.aspx%3fActionID%3dBibEmprestimosPendentesActionWeb%26SelectedMenuIDKey%3dItemEmprestimosRenovacao" title="Renovar o Empréstimo" target="_blank" class="btn"> App Android</a>
+      </div>
+
+      <div class="card">
+        <a href="https://sites.google.com/notredamecampinas.net.br/bibliotecavirtualcnd?pli=1" title="Blibioteca Virtual" target="_blank"><div class="product-image" id="img-8"></div></a>
+        <a href="https://sites.google.com/notredamecampinas.net.br/bibliotecavirtualcnd?pli=1" title="Blibioteca Virtual" target="_blank" class="btn">Rematricula</a>
+      </div>
+    </div>
+    </section>
+
+    <section class="centralizador">
+      <div>        
+        <p class="paragraph" id="acessounico">ACESSO ÚNICO</p>
+      </div>
+    <div class="products-container" class="wrap">
+      <div class="card"> 
+        <a href="https://mizzouk12.geniussis.com/Login.aspx" title="Canvas Mizzou" target="_blank"><div class="product-image" id="img-9"></div></a>
+        <a href="https://mizzouk12.geniussis.com/Login.aspx" title="Canvas Mizzou" target="_blank" class="btn">CANVAS</a>
+      </div>
+
+      <div class="card">
+        <a href="https://iscoolapp.net/" title="Iscool App" target="_blank"><div class="product-image" id="img-10"></div></a>
+        <a href="https://iscoolapp.net/" title="Iscool App" target="_blank" class="btn">ISCOOL-APP</a>
+      </div>
+
+      <div class="card">
+        <a href="https://www.matific.com/bra/pt-br/login-page/?sso-error-login=1&vendor-slug=google" title="Matific" target="_blank"><div class="product-image" id="img-11"></div></a>
+        <a href="https://www.matific.com/bra/pt-br/login-page/?sso-error-login=1&vendor-slug=google" title="Matific" target="_blank" class="btn">MATIFIC</a>
+      </div>
+
+      <div class="card">
+        <a href="https://ava.notredamecampinas.com.br/login/index.php" title="Moodle" target="_blank"><div class="product-image" id="img-12"></div></a>
+        <a href="https://ava.notredamecampinas.com.br/login/index.php" title="Moodle" target="_blank" class="btn">MOODLE</a>
+      </div>
+
+      <div class="card">
+        <a href="http://sistema.programasemente.com.br/profile/login/" title="Programa Semente" target="_blank"><div class="product-image" id="img-13"></div></a>
+        <a href="http://sistema.programasemente.com.br/profile/login/" title="Programa Semente" target="_blank" class="btn">SEMENTE</a>
+      </div>
+
+      <div class="card">
+        <a href="https://portal.redacaonota1000.com.br/home" title="Redação Nota 1000" target="_blank"><div class="product-image" id="img-14"></div></a>
+        <a href="https://portal.redacaonota1000.com.br/home" title="Redação Nota 1000" target="_blank" class="btn">NOTA1000</a>
+      </div>
+    </div>
+    </section>
+  </main>
+
+<!-- REDAPÉ -->
+
+<footer>
+  <div class="div-footer">
+    <img src="/img/formageo3.png" id="formageo3-1" alt="image lemon and sqaure">
+    <img src="/img/formageo5.png" id="formageo5" alt="image of circle">
+  </div>
+
+  <div class="rodape">
+    <p class="copy"> &copy; 2023 Colégio Notre Dame Campinas. Site desenvolvido pela Equipe de Tecnologia Educacional.</p>
+    <p class="copy"> 
+    Dúvidas? Entre em contato conosco:
+    <a href="mailto:te@notredamecampinas.net.br">te@notredamecapinas.net.br</a> 
+    </p>
+  </div>
+</footer>
+<script src="/script/main2.js"></script> 
+  </body>
