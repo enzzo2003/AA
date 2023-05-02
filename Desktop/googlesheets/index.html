@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Verificar E-mail</title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <h1 class="h1">Verificar E-mail</h1>
+    <h1 id="user-email">2018005e2@notredamecampinas.net.br</h1>
+    <form class="container">    
+      <label for="email" >Digite o e-mail que deseja verificar:</label>
+      <input type="text" id="email" name="email" >
+      <button type="submit">Verificar</button>
+      
+    </form>
+    <style>
+        .container{
+        display: flex;
+        justify-content: center;
+            }
+          
+    </style>
+
+<script>
+    async function checkUserEmailAndRedirect() {
+      const email = document.querySelector('#user-email').textContent;
+  
+      try {
+        const response = await fetch('http://localhost:3000/check-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const { exists } = await response.json();
+        if (exists) {
+          window.location.href = 'ef1.html';
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'E-mail não encontrado',
+            text: `${email} não está presente na planilha.`,
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'Ocorreu um erro ao verificar o e-mail.',
+        });
+      }
+    }
+  
+    // Chame a função assim que a página for carregada
+    window.addEventListener('DOMContentLoaded', checkUserEmailAndRedirect);
+  </script>
+  
+      
+  </body>
+</html>
