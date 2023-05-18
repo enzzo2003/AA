@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    body {
+      background: linear-gradient(to right, #1a3c6e, #ffcc00);
+    }
+
+    .swal2-popup {
+      background-color: #1a3c6ed2 !important;
+    }
+
+    .swal2-title, .swal2-content {
+      color: #e5ff00 !important;
+    }
+
+    </style>
+</head>
+<body>
+    <script>
+        window.onload = function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const error = urlParams.get('error');
+          if (error === 'access_denied') {
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Somente professores',
+                  text: 'Contate equipe de TE',
+                  html: 'Contate equipe de TE. <br> <a href="mailto:tecnologia@notredamecampinas.net.br" style="color: yellow;">tecnologia@notredamecampinas.net.br</a>'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = "/";
+                  }
+              });
+          }
+      }
+    </script>
+</body>
+</html>

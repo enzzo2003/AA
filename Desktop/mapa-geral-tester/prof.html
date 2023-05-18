@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu Professor</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+  
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #004b8d;
+      color: #fff;
+    }
+
+    .navbar-brand {
+      color: #fff;
+    }
+/*Foto retornada do google */ 
+    #user-picture {
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+/*Cards das opçoes ( Sala A) ...*/
+    .card {
+    border: 1px solid #004b8d;
+    background-color: #3000f2;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    animation: fadeIn 0.5s ease-out;
+    }
+    /*Cor dos  CARDS*/
+  .card:nth-child(odd) {
+    background-color: #f8f8f8;
+  }
+/*titulos do card (A) , (B)*/
+    .card-title {
+    color: #004b8d;
+    font-size: 24px;
+    margin-bottom: 10px;
+    }
+    /*Hover do Card*/
+    .card:hover {
+    transform: scale(1.05);
+  }
+/*Botoes Bootstrap */
+    .btn-primary {
+      background-color: #004b8d;
+      border-color: #004b8d;
+    }
+    body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .class-selector {
+    margin: 20px;
+  }
+  .students-area {
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Define o número de colunas */
+    gap: 15px; /* Espaçamento entre os quadrados */
+    width: 1150px;
+    border: 1px solid #1692f8;
+    padding: 10px;
+  }
+      .student {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 190px;
+  height: 120px;
+  background-color: #004b8d;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  border: 10px;
+  border-radius: 5px;
+  }
+
+  .invisible {
+width: 0;
+height: 0;
+background: rgb(0, 238, 255);
+}
+.custom-alert {
+display: none;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.4);
+}
+
+.custom-alert-content {
+background-color: #fefefe;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+max-width: 500px; /* Altere a largura máxima aqui */
+}
+
+.custom-alert-actions {
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+.student-image {
+pointer-events: none;
+width: 70px;
+height: 70px; 
+border: 20px;
+border-radius: 100%;
+object-fit: cover;
+margin-bottom: 5px;
+margin-top: 5px;
+}
+
+.student-name {
+display: block;
+text-align: center;
+color: #ffffff;
+font-weight: 600;
+}
+/* CONFIGURAÇAO DO MODAL ENVIAR MAPA DE SALA*/
+#sendModal {
+display: none;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.4);
+}
+
+#sendModal .custom-alert-content {
+background-color: #fefefe;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+max-width: 500px;
+text-align: center;
+}
+
+#sendModal .custom-alert-content h3 {
+margin-top: 0;
+}
+
+#sendModal .custom-alert-body {
+margin-top: 20px;
+}
+
+#sendModal .custom-alert-body label {
+display: block;
+font-weight: bold;
+margin-bottom: 5px;
+}
+
+#sendModal .custom-alert-body input[type="text"],
+#sendModal .custom-alert-body input[type="file"] {
+display: block;
+margin-bottom: 15px;
+padding: 5px;
+width: 100%;
+border: 1px solid #ccc;
+border-radius: 3px;
+box-sizing: border-box;
+}
+
+#sendModal .custom-alert-actions {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+#sendModal .custom-alert-actions button {
+padding: 10px;
+margin-right: 10px;
+background-color: #1692f8;
+color: #fff;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+}
+
+#sendModal .custom-alert-actions button:hover { 
+background-color: #0071d1;
+}
+#downloadLink {
+display: inline-block;
+padding: 10px 20px;
+background-color: #135a94;
+color: #fff;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+text-decoration: none;
+border-radius: 5px;
+border: none;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+}
+
+#downloadLink:hover {
+background-color: #0071d1;
+}
+#file-upload-button{
+display: inline-block;
+padding: 10px 20px;
+color: #106e94;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+text-decoration: none;
+border-radius: 5px;
+border: none;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+}
+
+/*Contador de carteiras Vazias e Alunos */
+#student-count{
+position: absolute;
+font-weight: bold;
+font-size: 1.3rem  ;
+top: 0;
+left: 390px; /* Ajuste esse valor para obter o espaçamento desejado entre os botões */
+margin-left: 20px;
+}
+/*Lembrando que este empty-spot e a configuraçao INICIAL quando carregado da planilha , apos mexermos ele ira ser setado com as CORES DO JS*/
+/*na funçao HandleDrop do app.js la depois que movemos o empty-spot ele ira definir via JS*/
+.empty-spot {
+color: rgb(255, 255, 255);
+justify-content: center;
+font-weight: 600;
+background-color: #004b8d
+}
+#baixarButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+#sheets{
+ margin-bottom: 10px;
+}
+#studentsAreaContainer {
+  position: relative;
+  padding-top: 60px; /* Isso dá espaço para os botões na parte superior */
+}
+
+#sheets, #baixarButton {
+  position: absolute;
+  top: 0;
+}
+
+#sheets {
+  left: 0;
+ 
+}
+
+#baixarButton {
+  left: 100px; /* Isso posiciona o botão "Baixar Mapa-Sala" à direita do botão "Editar Sala". Ajuste este valor conforme necessário para obter o espaçamento desejado. */
+  margin-left: 20px;
+}
+
+  .navbar-brand {
+    color: white !important;
+}
+.btn-secondary{
+  background-color: #135a94;
+      border-color: #135a94;
+}
+.btn-secondary:hover{
+  background-color: #2f85cc;
+}
+.loading {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.459);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #0066ff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+.loading-text {
+  color: rgb(216, 253, 48);
+  font-size: 16px;
+  margin-top: 10px;
+}
+.new-div {
+  width: 100%; /* se a div 'students-area' não ocupar toda a largura, você pode substituir o '100%' pela largura correspondente */
+  text-align: center;
+  background-color: #CCC; /* ou qualquer outra cor que você queira */
+  padding: 5px 0; /* isso adiciona algum espaço acima e abaixo do texto */
+}
+.fundo{
+  width: 100%; /* se a div 'students-area' não ocupar toda a largura, você pode substituir o '100%' pela largura correspondente */
+  text-align: center;
+  background-color: #CCC; /* ou qualquer outra cor que você queira */
+  padding: 5px 0; /* isso adiciona algum espaço acima e*/
+}
+.hidden {
+  display: none;
+}
+
+
+  
+.dropdown-menu {
+    opacity: 0;
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: opacity 0.3s;
+  }
+
+  .dropdown-item {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-item:hover {
+    background-color: #004b8d;
+    color: white;
+  }
+  
+
+  .show {
+    opacity: 1;
+  }
+
+  
+
+  
+
+  
+
+  
+
+ 
+
+  
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+
+  .card:nth-child(odd) {
+    background-color: #f8f8f8;
+  }
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-light">
+    <span class="navbar-brand mb-0 h1">
+      Seja bem-vindo, Professor <span id="user-name"></span>
+    </span>
+    <div>
+      <img src="" alt="Foto do perfil" id="user-picture" width="50" height="50">
+      <a href="/logout" class="btn btn-secondary">Sair</a>
+    </div>
+</nav>
+
+<div id="loading" class="loading">
+  <div class="loading-inner">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container sm-3">
+    <div class="card-body text-center">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Selecione o Ano
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">6º Ano</a>
+                <a class="dropdown-item" href="#">7º Ano</a>
+                <a class="dropdown-item" href="#">8º Ano</a>
+                <a class="dropdown-item" href="#">9º Ano</a>
+                <!-- Adicione mais anos conforme necessário -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contêineres para cada ano. Inicialmente ocultos -->
+<div class="container sm-3 year-content" id="content-6" style="display: none;">
+  <!-- conteúdo para o 6º ano -->
+  <h1>EAEAEAEAEAEAEAEAEAEA</h1>
+</div>
+
+<div class="container sm-3 year-content" id="content-7" style="display: none;">
+  <!-- conteúdo para o 7º ano -->
+
+  <div class="container sm-3">  
+    <div class="card-body text-center"> <!-- Aqui é onde a classe 'text-center' é aplicada -->  
+      <h3 class="mt-2">6º Ano</h3>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">A</h5>
+              <a href="#" class="btn btn-primary" data-room="8anoA">Acessar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">B</h5>
+              <a href="#" class="btn btn-primary" data-room="8anoB">Acessar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">C</h5>
+              <a href="#" class="btn btn-primary" data-room="8anoC">Acessar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">D
+              </h5>
+              <a href="#" class="btn btn-primary" data-room="8anoD">Acessar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+</div>
+ <!-- FINAL para o 7º ano -->
+<div class="container sm-3 year-content" id="content-8" style="display: none;">
+   <!-- conteúdo para 8 ANO -->
+  <div class="container sm-3">  
+    <div class="card-body text-center"> <!-- Aqui é onde a classe 'text-center' é aplicada -->  
+      <h3 class="mt-2">8º Ano</h3>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">A</h5>
+              <a href="#" class="btn btn-primary" data-room="8anoA">Acessar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">B</h5>
+              <a href="#" class="btn btn-primary" data-room="8anoB">Acessar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">C</h5>
+              <a href="#" class="btn btn-primary" data-room="8anoC">Acessar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">D
+              </h5>
+              <a href="#" class="btn btn-primary" data-room="8anoD">Acessar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+ <!-- FINAL para 8 ANO -->
+</div>
+
+<div class="container sm-3 year-content" id="content-9" style="display: none;">
+  <!-- conteúdo para o 9º ano -->
+</div>
+
+
+  <!-- Seu código HTML existente -->
+
+  
+
+
+  <div class="container">
+    
+   
+    <div id="customAlert" class="custom-alert">
+      <div class="custom-alert-content">
+        <h3>Pré-visualização</h3>
+        <img id="screenshot" style="width: 100%; height: auto; max-height: 400px; object-fit: contain;" />
+        <div class="custom-alert-actions">
+          <a id="downloadLink" download="mapa-de-sala.png">Baixar imagem</a>
+          <button class="btn btn-primary" id="closeAlert">Fechar</button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="studentsAreaContainer">
+      <button id="sheets" class="btn btn-primary">Editar Sala</button>
+      <button id="baixarButton" class="btn btn-primary">Baixar Mapa-Sala</button>
+      <h1 id="student-count"></h1>
+      
+      <div class="screenshotArea">
+      <div class="new-div hidden">Lousa</div>
+      <div class="students-area">
+    
+        <!-- Os quadrados dos alunos serão adicionados aqui dinamicamente com JavaScript -->
+      </div>
+      <div class="fundo hidden">FUNDO</div>
+    </div>
+    </div>
+  </div>
+
+
+
+  <div id="sendModal" class="custom-alert">
+    <div class="custom-alert-content">
+        <h3>Enviar Mapa-de-sala</h3>
+        <div class="custom-alert-body">
+            <label for="nameInput" >Email:</label>
+            <input type="text" id="nameInput" placeholder="@notredamecampinas.net.br">
+            <label for="subjectInput">Nome e Observação:</label>
+            <input type="text" id="subjectInput">
+            <br>
+            <label for="fileInput">Anexar arquivo:</label>
+            <input type="file" id="fileInput">
+        </div>
+        <div class="custom-alert-actions">
+            <button id="cancelButton">Cancelar</button>
+            <button id="sendButton">Enviar</button>
+           
+        </div>
+    </div>
+</div>  
+
+  <script>  
+
+
+ // JQUERY PARA AS OPÇOES APARECEREM
+
+ const dropdown = document.querySelector('.dropdown');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+  const dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
+
+  dropdown.addEventListener('mouseenter', function() {
+    dropdownMenu.style.display = 'block';
+    setTimeout(function() {
+      dropdownMenu.classList.add('show');
+    }, 10);
+  });
+
+  dropdown.addEventListener('mouseleave', function() {
+    dropdownMenu.classList.remove('show');
+    setTimeout(function() {
+      dropdownMenu.style.display = 'none';
+    }, 300);
+  });
+
+  dropdownItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      dropdownMenu.classList.remove('show');
+      setTimeout(function() {
+        dropdownMenu.style.display = 'none';
+      }, 300);
+    });
+  });
+ $(document).ready(function(){
+  $(".dropdown-item").click(function(){
+    // Ocultar todos os conteúdos de ano
+    $(".year-content").hide();
+
+    // Obter o ano selecionado
+    var selectedYear = $(this).text().trim().charAt(0);
+
+    // Exibir o conteúdo do ano selecionado
+    $("#content-" + selectedYear).show();
+  });
+
+  // Adicionar um manipulador de eventos para os botões da sala
+  $("[data-room]").click(function(){
+    // Obter o ano da sala selecionada
+    var selectedYear = $(this).data("room").charAt(0);
+
+    // Ocultar o conteúdo do ano correspondente
+    $("#content-" + selectedYear).hide();
+  });
+});
+
+  
+//FINAL DO JQUERY 
+
+// Primeiro, selecione todos os botões de sala
+const roomButtons = document.querySelectorAll('.btn.btn-primary');
+
+// Em seguida, adicione um ouvinte de evento click a cada botão
+roomButtons.forEach(button => {
+  button.addEventListener('click', function(event) {
+    // Previna a ação padrão do link
+    event.preventDefault();
+
+    // Obtenha o identificador da sala do atributo data-room
+    const room = event.target.getAttribute('data-room');
+
+    // Use o identificador da sala para buscar os alunos
+    fetchStudents(room);
+  });
+});
+
+
+// PEGANDO DO CORPO DO INDEX.js e passando para os ids , nome e foto 
+    const userData = JSON.parse('__USER_DATA__');
+    const userName = document.getElementById('user-name');
+    const userPicture = document.getElementById('user-picture');
+   
+    userName.textContent = userData.name;
+    userPicture.src = userData.picture;
+
+    document.addEventListener('DOMContentLoaded', function () {
+  const classSelector = document.querySelector('.class-selector');
+  classSelector.addEventListener('change', function (event) {
+    const selectedClass = event.target.value;
+    fetchStudents(selectedClass);
+  });
+
+  // Buscar os alunos da classe selecionada inicialmente
+  fetchStudents(classSelector.value);
+});
+
+function fetchStudents(selectedClass) {
+  const sheetName = selectedClass.replace(/ /g, ''); // Remove espaços em branco da classe selecionada
+  fetch(`http://localhost:5500/students/${sheetName}`) // Adiciona o nome da aba na URL da chamada
+    .then((response) => response.json())
+    .then((students) => {
+      displayStudents(students);
+    })
+    .catch((error) => {
+      console.error('Erro ao buscar alunos, provável tabela não existente', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao achar Sala,Contate.',
+        text: 'Erro ao achar Sala,Contate  ' ,
+        html: 'tecnologia@notredamecampinas.net.br'
+      });
+    });
+}
+
+
+//  Pegando botton cancelar e enviar 
+const sendButton = document.getElementById('sendButton');
+const cancelButton = document.getElementById('cancelButton');
+
+sendButton.addEventListener('click', sendEmail);
+
+function sendEmail() {
+  // Obter os valores dos campos de input
+  const email = document.getElementById('nameInput').value;
+  const assunto = document.getElementById('subjectInput').value;
+  const arquivo = document.getElementById('fileInput').files[0];
+
+  // Criar um objeto FormData para enviar os dados do formulário
+  const formData = new FormData();
+  formData.append('email', email);
+  formData.append('assunto', assunto);
+  formData.append('arquivo', arquivo);
+
+  // Exibir o indicador de carregamento
+  
+  fetch('http://localhost:3000/enviar-email', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+     
+      
+      alert(data.message);
+    })
+    .catch((error) => {
+     
+      
+      console.error('Erro ao enviar email:', error);
+    });
+}
+
+cancelButton.addEventListener('click', () => {
+  // Fechar o modal e limpar os campos de input
+  document.getElementById('sendModal').style.display = 'none';
+  document.getElementById('nameInput').value = '';
+  document.getElementById('subjectInput').value = '';
+  document.getElementById('fileInput').value = '';
+});
+
+const baixarButton = document.getElementById("baixarButton");
+const loadingElement = document.getElementById("loading");
+
+// ... (o restante do seu código JavaScript)
+
+baixarButton.addEventListener("click", () => {
+  // Exibir o elemento de carregamento
+  loadingElement.style.display = "block";
+
+  // Chamar a função para tirar a print com um pequeno delay (simulação de delay)
+  setTimeout(() => {
+    takeScreenshot();
+  }, 1000);
+});
+
+
+
+  const closeAlert = document.getElementById("closeAlert");
+closeAlert.addEventListener("click", function () {
+  const customAlert = document.getElementById("customAlert");
+  customAlert.style.display = "none";
+});
+
+function takeScreenshot() {
+  var screenshotArea = document.querySelector('.screenshotArea');
+  var lousa = document.querySelector('.new-div');
+  var fundo = document.querySelector('.fundo')
+
+  lousa.classList.remove('hidden');
+  fundo.classList.remove('hidden');
+
+  html2canvas(screenshotArea).then((canvas) => {
+    const imgData = canvas.toDataURL("image/png");
+    const screenshot = document.getElementById("screenshot");
+    const customAlert = document.getElementById("customAlert");
+    const downloadLink = document.getElementById("downloadLink");
+    downloadLink.addEventListener("click", handleDownloadClick);
+
+    screenshot.src = imgData;
+
+    customAlert.style.display = "block";
+
+    downloadLink.href = imgData;
+    loadingElement.style.display = "none";
+
+    lousa.classList.add('hidden');
+    fundo.classList.add('hidden');
+  });
+}
+
+
+
+const sheets = document.getElementById("sheets");
+sheets.addEventListener("click", abrirPlanilha);
+
+const downloadLink = document.getElementById("downloadLink");
+downloadLink.addEventListener("click", handleDownloadClick);
+
+function handleDownloadClick() {
+  setTimeout(() => {
+    const sendModal = document.getElementById("sendModal");
+    sendModal.style.display = "block";
+
+    const cancelButton = document.getElementById("cancelButton");
+    cancelButton.addEventListener("click", () => {
+      sendModal.style.display = "none";
+    });
+
+    const sendButton = document.getElementById("sendButton");
+    sendButton.addEventListener("click", () => {
+      // Lógica para enviar o arquivo aqui
+    });
+  }, 2000);
+}
+// Funçao para abrir planilha = Editar Sala 
+function abrirPlanilha(){
+  window.location.href = "https://docs.google.com/spreadsheets/d/1IaYIo6PwRK6i0Aola0Akxrd8VMlur1_OIWYGctTz4O4/edit#gid=1795826749";
+}
+
+  const studentsArea = document.querySelector(".students-area");
+
+
+// Calcula o número de alunos e colunas necessárias
+const numAlunos = allStudents.filter(student => student.class === selectedClass).length;
+const numColunas = Math.ceil(numAlunos / 5); // Arredonda para cima para garantir que haja pelo menos uma coluna
+
+// Atualiza o CSS para definir o número de colunas dinamicamente
+studentsArea.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`;
+
+
+
+function displayStudents(students) {
+  studentsArea.innerHTML = "";
+
+  // Aqui estamos falando que a totalspots e = o numero total de alunos da planilha   (students.lengh divido por 5  VEZES* 5 ) const totalSpots = 35
+  // Math.ceil arredonda pois 31/5 = 6.2 math.ceil arredonda para 7, 7 vezes 5 = 35 
+  const totalSpots = Math.ceil(students.length / 5) * 5;
+  // Aqui estamos falando que a const emptyspots e igual Totalspots = 35 MENOS students.lengh = 31  que e IGUAL A 4 
+  // Assim EMPTySPOTS = 4 
+  const emptySpots = totalSpots - students.length; // Calcule o número de carteiras vazias
+
+  for (let i = 0; i < totalSpots; i++) {
+    const studentElement = document.createElement("div");
+    studentElement.classList.add("student");
+
+    if (i < students.length) {
+      const studentImage = document.createElement("img");
+      studentImage.src = students[i].imageUrl;
+      studentImage.alt = students[i].name;
+      studentImage.classList.add("student-image");
+      studentElement.appendChild(studentImage);
+
+      const studentName = document.createElement("span");
+      studentName.textContent = students[i].name;
+      studentName.classList.add("student-name");
+      studentElement.appendChild(studentName);
+     
+
+      studentElement.setAttribute("id", `student-${i}`); // Adiciona um ID único a cada aluno
+    } else {
+      studentElement.classList.add("empty-spot"); // Adicione esta linha para adicionar uma classe CSS aos espaços vazios
+      studentElement.textContent = "VAZIO"; // Adicione esta linha para adicionar o texto "VAZIO" aos espaços vazios
+      
+      
+    }
+
+   
+    studentElement.setAttribute("draggable", "true"); // Permite arrastar o elemento
+
+    // Adiciona event listeners para arrastar e soltar
+    studentElement.addEventListener("dragstart", handleDragStart);
+    studentElement.addEventListener("dragend", handleDragEnd);
+
+    studentsArea.appendChild(studentElement);
+  }
+
+  // Adiciona event listeners para a área de alunos
+  studentsArea.addEventListener("dragover", handleDragOver);
+  studentsArea.addEventListener("drop", handleDrop);
+
+  // Adicione estas linhas para atualizar o elemento <h1> com a quantidade de alunos e carteiras vazias
+  const studentCountElement = document.getElementById("student-count");
+  studentCountElement.textContent = `Alunos: ${students.length}, Carteiras vazias: ${emptySpots}`;
+}
+  
+  function handleDragStart(event) {
+    event.dataTransfer.setData("text/plain", event.target.id);
+    event.target.style.opacity = "0.5";
+  }
+  
+  function handleDragOver(event) {
+    event.preventDefault();
+  }
+
+  
+  
+  function handleDrop(event) {
+    event.preventDefault();
+  
+    if (event.target.closest(".student")) {
+      const draggedElementId = event.dataTransfer.getData("text/plain");
+      const draggedElement = document.getElementById(draggedElementId);
+      const targetElement = event.target.closest(".student");
+  
+      // Troca a posição dos alunos (nome e imagem)
+      const tempContent = targetElement.innerHTML;
+      const tempClasses = [...targetElement.classList]; // Armazenamos as classes CSS do elemento alvo (ou seja, onde o estudante ou "empty-spot" está sendo solto) 
+                                                        // antes de  fazer qualquer alteração. Isso é feito com const tempClasses = [...targetElement.classList];. 
+  
+      targetElement.innerHTML = draggedElement.innerHTML;
+
+      targetElement.className = ''; // Limpa todas as classes CSS do elemento alvo
+
+      targetElement.classList.add(...draggedElement.classList); //  Isso garante que se um estudante for solto em um 
+                                                                //"empty-spot", o "empty-spot" manterá sua classe CSS e vice-versa.
+      draggedElement.innerHTML = tempContent;
+
+      draggedElement.className = ''; // Limpa todas as classes CSS do elemento arrastado
+
+      draggedElement.classList.add(...tempClasses); //  Isso garante que se um estudante for solto em um 
+                                                    //"empty-spot", o "empty-spot" manterá sua classe CSS e vice-versa.
+
+      // Adiciona um ID único a cada aluno
+      targetElement.setAttribute("id", `student-${Date.now()}`);
+      draggedElement.setAttribute("id", `student-${Date.now() + 1}`);
+  
+      // Limpa o estilo aplicado durante o arrastar e soltar
+      draggedElement.style.background = "";
+      targetElement.style.background = "";
+
+      //Aqui Verificamos COM IF se o Elemento que esta sendo arrastado , ou o elemento alvo = onde ira ser trocado
+      // tem a Classe Empty-Spot "SE" sim executa e definimos seus estilos via JS
+
+      // Restabelece as propriedades CSS do empty-spot
+
+   // ELEMENTO ARRASTADO   
+      if(draggedElement.classList.contains('empty-spot')){
+        draggedElement.style.color = "white";
+        draggedElement.style.display = "flex";
+        draggedElement.style.justifyContent = "center";
+        draggedElement.style.alignItems = "center";
+      }
+  // ELEMENTO ALVO
+      if(targetElement.classList.contains('empty-spot')){
+        targetElement.style.color = "white";
+        targetElement.style.display = "flex";
+        targetElement.style.justifyContent = "center";
+        targetElement.style.alignItems = "center";
+      }
+    }
+  }
+
+  function handleDragEnd(event) {
+    event.target.style.opacity = "1";
+  }   
+
+
+  </script>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

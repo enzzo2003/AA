@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Professor</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      background: linear-gradient(to right, #1a3c6e, #ffcc00);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      background: #1a3c6e;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .menu h2, .menu p {
+      margin-bottom: 20px;
+    }
+    .content {
+      margin-left: 300px;
+      width: calc(100% - 300px);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .btn {
+      background-color: #1a3c6e;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+    .btn:hover {
+      background-color: #ffcc00;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="menu" data-aos="fade-right">
+    <h2>Bem-vindo ao Mapa-de-Sala do Professor</h2>
+    <p>Aqui você pode acessar todas as informações e recursos necessários para o mapa-de-sala. Faça login com sua conta Google para continuar.</p>
+  </div>
+  <div class="content" data-aos="fade-left">
+    <button class="btn" onclick="window.location.href='/auth/google'">Entrar com Google</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
